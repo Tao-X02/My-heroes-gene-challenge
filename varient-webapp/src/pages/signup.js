@@ -123,7 +123,7 @@ export default function Signup() {
                         value={gender}
 
                         style={{ marginBottom: 20, }}
-                        onChange={setGender}
+                        onChange={(e) => setGender(e.target.value)}
                         input={<OutlinedInput label="Tag" />}
                         MenuProps={MenuProps}
                     >
