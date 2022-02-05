@@ -8,6 +8,7 @@ import Swal from 'sweetalert2'
 import {
     auth,
     registerWithPatient,
+    SignUPWithGoogle
 } from './DB/firebaseconnection';
 import { genderOptions } from "./DB/data";
 
@@ -41,7 +42,7 @@ export default function Signup() {
     const [geneMutation, setGeneMutation] = useState("");
     const [listofReports, setListofReports] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
-
+    var google = false;
     const navigate = useNavigate();
     const [user, loading, error] = useAuthState(auth);
 
@@ -79,11 +80,19 @@ export default function Signup() {
         }
     };
 
+    const SignUpGoogle = () => {
+        google = true;
+        SignUPWithGoogle(age, gender, geneMutation, listofReports);
+    };
+
 
 
     useEffect(() => {
         if (loading) return;
-        if (user) {
+        if (user && google) {
+            navigate(`/Dashboard`);
+        }
+        if (user && !google) {
             navigate(`/Setting`);
         }
     }, [user, loading]);
@@ -173,7 +182,9 @@ export default function Signup() {
                 >
                     Sign up
                 </Button>
-                <Button color="error" variant="contained" fullWidth style={{ marginBottom: 20 }}>
+                <Button color="error" variant="contained" fullWidth style={{ marginBottom: 20 }}
+                    onClick={() => SignUpGoogle()}
+                >
                     Sign up with Google
                 </Button>
             </form>

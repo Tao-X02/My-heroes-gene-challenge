@@ -6,6 +6,7 @@ import Dashboard from './pages/Dashboard';
 import Signup from './pages/signup';
 import Summary from './pages/summary';
 import Setting from './pages/setting';
+import SignupGoogle from './pages/signupGoogle';
 
 function App() {
   return (

@@ -18,6 +18,9 @@ const app = firebase.initializeApp(firebaseConfig);
 const auth = app.auth();
 const db = app.firestore();
 const storage = firebase.storage();
+const googleProvider = new firebase.auth.GoogleAuthProvider();
+
+
 
 const signInWithEmailAndPassword = async (email, password) => {
     try {
@@ -50,12 +53,72 @@ const logout = () => {
     auth.signOut();
 };
 
+const SignUPWithGoogle = async (age, gender, geneMutation, listofReports) => {
+
+    try {
+        const res = await auth.signInWithPopup(googleProvider);
+        const user = res.user;
+        const query = await db
+            .collection("Patients")
+            .where("uid", "==", user.uid)
+            .get();
+        if (query.docs.length === 0) {
+            await db.collection("Patients").add({
+                uid: user.uid,
+                name: user.displayName,
+                age,
+                gender,
+                geneMutation,
+                listofReports
+
+            });
+        }
+    } catch (err) {
+        console.error(err);
+        alert(err.message);
+    }
+
+};
+
+const LoginWithGoogle = async () => {
+    try {
+        const res = await auth.signInWithPopup(googleProvider);
+        const user = res.user;
+    } catch (err) {
+        console.error(err);
+        alert(err.message);
+    }
+};
+
+const UpdategoogleDB = async (age, gender, geneMutation, listofReports) => {
+    try {
+        const res = app.auth().currentUser
+        const user = res.user;
+        await db.collection("Patients").doc(user.uid).set({
+            uid: user.uid,
+            name: user.displayName,
+            age,
+            gender,
+            geneMutation,
+            listofReports
+        });
+    } catch (err) {
+        console.error(err);
+        alert(err.message);
+    }
+};
+
+
+
 export {
     auth,
     storage,
     db,
     registerWithPatient,
     signInWithEmailAndPassword,
-    logout
+    logout,
+    SignUPWithGoogle,
+    UpdategoogleDB,
+    LoginWithGoogle
 
 }

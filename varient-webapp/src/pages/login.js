@@ -5,7 +5,11 @@ import Button from '@mui/material/Button';
 import { useAuthState } from "react-firebase-hooks/auth";
 import '../App.css';
 import { Link, useNavigate } from 'react-router-dom';
-import { auth, signInWithEmailAndPassword } from './DB/firebaseconnection';
+import {
+    auth,
+    signInWithEmailAndPassword,
+    LoginWithGoogle
+} from './DB/firebaseconnection';
 
 export default function Login() {
 
@@ -26,7 +30,7 @@ export default function Login() {
 
 
 
-    
+
 
     return (
         <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)', flexDirection: 'column', justifyContent: 'center' }}>
@@ -50,15 +54,16 @@ export default function Login() {
                     onChange={(e) => setPassword(e.target.value)}
                     style={{ marginBottom: 20 }}
                 />
-                <Button color="error" variant="contained" fullWidth style={{ marginBottom: 20 }}>
+                <Button color="error" variant="contained" fullWidth style={{ marginBottom: 20 }}
+                    onClick={() => LoginWithGoogle()}>
                     Login with Google
                 </Button>
                 <Button color="primary" variant="contained" fullWidth type="submit" style={{ marginBottom: 20 }}
                     onClick={() => signInWithEmailAndPassword(email, password)}
                 >
-                    Submit
+                    Login
                 </Button>
-                <Button color="success" variant="contained" fullWidth type="submit">
+                <Button color="success" variant="contained" fullWidth >
                     <Link style={{ textDecoration: 'none', color: 'white' }} to="/signup">
                         Don't have an account? Sign up here
                     </Link>
