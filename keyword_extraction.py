@@ -4,7 +4,7 @@ import os
 import spacy
 
 pytesseract.tesseract_cmd = r"C:/Program Files/Tesseract-OCR/tesseract.exe"
-image_path = r"C:\Users\Paula\UofT-Hacks\varient-webapp\src\nlp\dataset\VarientxUofTHacks Gene Resource\ATM_1.png"
+image_path = r"C:\Users\Paula\UofTHacks\dataset\VarientxUofTHacks Gene Resource\ARSE.png"
 
 def img_to_txt():
     img = Image.open(image_path)
@@ -13,7 +13,7 @@ def img_to_txt():
     return text
 
 def gene_interest():
-    file_name = os.path.basename(image_path)
+    file_name = os.path.basename(image_path).split('.')[0]
     if '_' in file_name:
         underscore_index = file_name.index('_')
         file_name = file_name[:underscore_index]
