@@ -46,11 +46,16 @@ const registerWithPatient = async (email, password, name, age, gender, geneMutat
     }
 };
 
+const logout = () => {
+    auth.signOut();
+};
+
 export {
     auth,
     storage,
     db,
     registerWithPatient,
     signInWithEmailAndPassword,
+    logout
 
 }
