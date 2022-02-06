@@ -96,7 +96,7 @@ if __name__ == '__main__':
             label = "your target gene is present in the report."
         else:
             label = "Your target gene is not present in the report."
-        st.image(image, caption=label)
+        st.image('output.png', caption=label)
         keyword_text = "Here are the keywords that might be helpful:"
         st.text(keyword_text)
         st.text(extract_keywords(img_to_txt(filename)))
