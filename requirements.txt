@@ -7,3 +7,4 @@ spacy-loggers==1.0.1
 streamlit==1.5.0
 en-ner-bionlp13cg-md==0.4.0
 streamlit==0.73.0
+https://s3-us-west-2.amazonaws.com/ai2-s2-scispacy/releases/v0.4.0/en_ner_bionlp13cg_md-0.4.0.tar.gz
