@@ -6,3 +6,4 @@ spacy-legacy==3.0.8
 spacy-loggers==1.0.1
 streamlit==1.5.0
 en-ner-bionlp13cg-md==0.4.0
+streamlit==0.73.0
