@@ -18,6 +18,8 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import Swal from 'sweetalert2'
+
 
 const ITEM_HEIGHT = 55;
 const ITEM_PADDING_TOP = 15;
@@ -42,8 +44,20 @@ export default function Setting() {
 
 
     const EditDB = () => {
+        remember()
         UpdategoogleDB(uid, name, age, gender, geneMutation, listofReports);
     };
+
+    const remember = () => {
+        Swal.fire({
+            title: 'your profile has been successfully updated',
+            
+            icon: 'check',
+            showCancelButton: false,
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Ok'
+        })
+    }
 
     const fetchUserdata = async () => {
         try {
