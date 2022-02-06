@@ -80,21 +80,16 @@ export default function Signup() {
         }
     };
 
-    const SignUpGoogle = () => {
-        google = true;
-        SignUPWithGoogle(age, gender, geneMutation, listofReports);
-    };
+
 
 
 
     useEffect(() => {
         if (loading) return;
-        if (user && google) {
+        if (user) {
             navigate(`/Dashboard`);
         }
-        if (user && !google) {
-            navigate(`/Setting`);
-        }
+
     }, [user, loading]);
 
 
@@ -183,7 +178,7 @@ export default function Signup() {
                     Sign up
                 </Button>
                 <Button color="error" variant="contained" fullWidth style={{ marginBottom: 20 }}
-                    onClick={() => SignUpGoogle()}
+                    onClick={() => SignUPWithGoogle(age, gender, geneMutation, listofReports)}
                 >
                     Sign up with Google
                 </Button>

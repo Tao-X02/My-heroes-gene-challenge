@@ -5,34 +5,34 @@ import {
     logout,
 } from './DB/firebaseconnection';
 import { Link, useNavigate } from 'react-router-dom';
-import {useDropzone} from 'react-dropzone';
+import { useDropzone } from 'react-dropzone';
 
 const baseStyle = {
-  flex: 1,
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  padding: '20px',
-  borderWidth: 2,
-  borderRadius: 2,
-  borderColor: '#eeeeee',
-  borderStyle: 'dashed',
-  backgroundColor: '#fafafa',
-  color: '#bdbdbd',
-  outline: 'none',
-  transition: 'border .24s ease-in-out'
+    flex: 1,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    padding: '20px',
+    borderWidth: 2,
+    borderRadius: 2,
+    borderColor: '#eeeeee',
+    borderStyle: 'dashed',
+    backgroundColor: '#fafafa',
+    color: '#bdbdbd',
+    outline: 'none',
+    transition: 'border .24s ease-in-out'
 };
 
 const focusedStyle = {
-  borderColor: '#2196f3'
+    borderColor: '#2196f3'
 };
 
 const acceptStyle = {
-  borderColor: '#00e676'
+    borderColor: '#00e676'
 };
 
 const rejectStyle = {
-  borderColor: '#ff1744'
+    borderColor: '#ff1744'
 };
 
 export default function Dashboard(props) {
@@ -83,7 +83,7 @@ export default function Dashboard(props) {
 
     return (
         <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)', width: 900 }}>
-            <div {...getRootProps({style})}>
+            <div {...getRootProps({ style })}>
                 <input {...getInputProps()} />
                 <p>Drop or select images here</p>
             </div>

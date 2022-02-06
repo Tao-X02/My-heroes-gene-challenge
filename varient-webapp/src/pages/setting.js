@@ -6,6 +6,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2'
 import {
+    db,
     auth,
     SignInWithGoogle,
     UpdategoogleDB
@@ -31,26 +32,60 @@ const MenuProps = {
 };
 
 export default function Setting() {
+    const [user, loading, error] = useAuthState(auth);
+    const [uid, setUid] = useState("");
     const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
     const [age, setAge] = useState("");
     const [gender, setGender] = useState("");
     const [geneMutation, setGeneMutation] = useState("");
     const [listofReports, setListofReports] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
-    var google = false;
     const navigate = useNavigate();
-    const [user, loading, error] = useAuthState(auth);
 
 
     const EditDB = () => {
-        UpdategoogleDB(age, gender, geneMutation, listofReports);
+        UpdategoogleDB(uid, name, age, gender, geneMutation, listofReports);
     };
+
+    const fetchUserdata = async () => {
+        try {
+            console.log("asdasd")
+            const query = await db
+                .collection("Patients")
+                .where("uid", "==", user?.uid)
+                .get();
+            const data = await query.docs[0].data();
+            setName(data.name);
+            setAge(data.age);
+            setGender(data.gender);
+            setListofReports(data.listofReports);
+            setGeneMutation(data.geneMutation);
+            setUid(data.uid);
+        } catch (err) {
+            console.error(err);
+            alert("An error occurred while obtaining user data.");
+        }
+    };
+
+    useEffect(() => {
+        console.log("rendered");
+        if (loading) return;
+        fetchUserdata();
+    }, [user, loading]);
 
     return (
         <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)' }}>
             <form>
+
+                <TextField
+                    fullWidth
+                    id="name"
+                    name="name"
+                    label="Name"
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    style={{ marginBottom: 20 }}
+                />
                 <TextField
                     fullWidth
                     id="age"

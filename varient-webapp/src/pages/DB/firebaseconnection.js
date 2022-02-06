@@ -35,7 +35,7 @@ const registerWithPatient = async (email, password, name, age, gender, geneMutat
     try {
         const res = await auth.createUserWithEmailAndPassword(email, password);
         const user = res.user;
-        await db.collection("Patients").doc(user.uid).set({
+        await db.collection("Patients").doc(name).set({
             uid: user.uid,
             name,
             age,
@@ -53,7 +53,7 @@ const logout = () => {
     auth.signOut();
 };
 
-const SignUPWithGoogle = async (age, gender, geneMutation, listofReports) => {
+const SignUPWithGoogle = async () => {
 
     try {
         const res = await auth.signInWithPopup(googleProvider);
@@ -62,14 +62,18 @@ const SignUPWithGoogle = async (age, gender, geneMutation, listofReports) => {
             .collection("Patients")
             .where("uid", "==", user.uid)
             .get();
+        console.log("1")
+        console.log(user.uid)
         if (query.docs.length === 0) {
-            await db.collection("Patients").add({
+            console.log("2")
+            console.log(user.uid)
+            await db.collection("Patients").doc(user.uid).set({
                 uid: user.uid,
                 name: user.displayName,
-                age,
-                gender,
-                geneMutation,
-                listofReports
+                age: "",
+                gender: "",
+                geneMutation: "",
+                listofReports: ""
 
             });
         }
@@ -82,21 +86,19 @@ const SignUPWithGoogle = async (age, gender, geneMutation, listofReports) => {
 
 const LoginWithGoogle = async () => {
     try {
-        const res = await auth.signInWithPopup(googleProvider);
-        const user = res.user;
+        await auth.signInWithPopup(googleProvider);
+
     } catch (err) {
         console.error(err);
         alert(err.message);
     }
 };
 
-const UpdategoogleDB = async (age, gender, geneMutation, listofReports) => {
+const UpdategoogleDB = async (uid, name, age, gender, geneMutation, listofReports) => {
     try {
-        const res = app.auth().currentUser
-        const user = res.user;
-        await db.collection("Patients").doc(user.uid).set({
-            uid: user.uid,
-            name: user.displayName,
+        await db.collection("Patients").doc(uid).set({
+            uid,
+            name,
             age,
             gender,
             geneMutation,
