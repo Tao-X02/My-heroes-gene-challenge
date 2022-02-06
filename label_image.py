@@ -34,6 +34,10 @@ def label_image(file_name):
             (x, y, w, h) = (d['left'][i], d['top'][i], d['width'][i], d['height'][i])
             img = cv2.rectangle(img, (x - 6, y - 6), (x + w + 9, y + h + 9), (0, 255, 0), 2)
 
+    if (found == False):
+        font = cv2.FONT_HERSHEY_SIMPLEX
+        img = cv2.putText(img,'No gene was found on report',(100,500), font, 2, (255, 0, 0), 2, cv2.LINE_AA)
+
     cv2.imwrite('output.png', img) # Modify this
     return found
 
