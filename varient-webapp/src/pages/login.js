@@ -11,6 +11,7 @@ import {
     LoginWithGoogle
 } from './DB/firebaseconnection';
 import { StyleSheet, css } from 'aphrodite/no-important';
+
 import './styles/login.css';
 import { FcGoogle } from "react-icons/fc";
 
@@ -38,45 +39,49 @@ export default function Login() {
 
 
     return (
-
-        <div className='box'>
-            <text className="textlg" >Login</text>
-            <Button color="error" variant="contained" fullWidth style={{ marginBottom: 20 }}
-                onClick={() => LoginWithGoogle()}>
-                <FcGoogle className='googlelogo'/>Continue with google
-            </Button>
-            <form >
-                <TextField
-                    fullWidth
-                    id="email"
-                    name="email"
-                    label="Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    style={{ marginBottom: 20 }}
-                />
-                <TextField
-                    fullWidth
-                    id="password"
-                    name="password"
-                    label="Password"
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    style={{ marginBottom: 20 }}
-                />
-
-                <Button color="primary" variant="contained" fullWidth type="submit" style={{ marginBottom: 20 }}
-                    onClick={() => signInWithEmailAndPassword(email, password)}
-                >
+        <div className='body'>
+            <div className='box'>
+                <div className="textlg">
                     Login
+                </div>
+                <Button color="error" variant="contained" fullWidth style={{ marginBottom: 20 }}
+                    onClick={() => LoginWithGoogle()}>
+                    <FcGoogle className='googlelogo' />Continue with google
                 </Button>
-                <Button color="success" variant="contained" fullWidth >
-                    <Link style={{ textDecoration: 'none', color: 'white' }} to="/signup">
-                        Don't have an account? Sign up here
-                    </Link>
-                </Button>
-            </form>
+                <form >
+
+                    <TextField
+                        fullWidth
+                        id="email"
+                        name="email"
+                        label="Email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        style={{ marginBottom: 20 }}
+                    />
+                    <TextField
+                        fullWidth
+                        id="password"
+                        name="password"
+                        label="Password"
+                        type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        style={{ marginBottom: 20 }}
+                    />
+
+                    <Button color="primary" variant="contained" fullWidth type="submit" style={{ marginBottom: 20 }}
+                        onClick={() => signInWithEmailAndPassword(email, password)}
+                    >
+                        Login
+                    </Button>
+                    <Button color="success" variant="contained" fullWidth >
+                        <Link style={{ textDecoration: 'none', color: 'white' }} to="/signup">
+                            Don't have an account? Sign up here
+                        </Link>
+                    </Button>
+                </form>
+            </div>
         </div>
     )
 }
