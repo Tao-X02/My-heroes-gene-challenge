@@ -31,9 +31,18 @@ function Navbar() {
                         <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
                     </div>
                     <ul className={click ? 'nav-menu active' : 'nav-menu'}>
-                        <button onClick={logout}>Logout</button>
+                        <Link to='/Dashboard'>
+                            <button className='button bn38' >Dashboard</button>
+                        </Link>
                     </ul>
-
+                    <ul className={click ? 'nav-menu active' : 'nav-menu'}>
+                        <Link to='/Setting'>
+                            <button className='button bn38' >Settings</button>
+                        </Link>
+                    </ul>
+                    <ul className={click ? 'nav-menu active' : 'nav-menu'}>
+                        <button className='button bn37' onClick={logout}>Logout</button>
+                    </ul>
                 </div>
             </nav>
         </>

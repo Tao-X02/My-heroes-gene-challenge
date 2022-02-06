@@ -5,7 +5,7 @@ import Login from './pages/login';
 import Dashboard from './pages/controlers/DashboardC';
 import Signup from './pages/signup';
 import Summary from './pages/summary';
-import Setting from './pages/setting';
+import Setting from './pages/controlers/settingC';
 
 
 function App() {
