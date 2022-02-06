@@ -10,6 +10,11 @@ import {
     signInWithEmailAndPassword,
     LoginWithGoogle
 } from './DB/firebaseconnection';
+import { StyleSheet, css } from 'aphrodite/no-important';
+import './styles/login.css';
+import { FcGoogle } from "react-icons/fc";
+
+
 
 export default function Login() {
 
@@ -33,7 +38,13 @@ export default function Login() {
 
 
     return (
-        <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)', flexDirection: 'column', justifyContent: 'center' }}>
+
+        <div className='box'>
+            <text className="textlg" >Login</text>
+            <Button color="error" variant="contained" fullWidth style={{ marginBottom: 20 }}
+                onClick={() => LoginWithGoogle()}>
+                <FcGoogle className='googlelogo'/>Continue with google
+            </Button>
             <form >
                 <TextField
                     fullWidth
@@ -54,10 +65,7 @@ export default function Login() {
                     onChange={(e) => setPassword(e.target.value)}
                     style={{ marginBottom: 20 }}
                 />
-                <Button color="error" variant="contained" fullWidth style={{ marginBottom: 20 }}
-                    onClick={() => LoginWithGoogle()}>
-                    Login with Google
-                </Button>
+
                 <Button color="primary" variant="contained" fullWidth type="submit" style={{ marginBottom: 20 }}
                     onClick={() => signInWithEmailAndPassword(email, password)}
                 >
@@ -72,3 +80,20 @@ export default function Login() {
         </div>
     )
 }
+
+const styles = StyleSheet.create({
+    block: {
+        boxShadow: "1px 3px 1px #9E9E9E"
+    },
+    block_layout: {
+        position: 'relative',
+        overflow: 'hidden',
+        minHeight: 1024,
+        flexGrow: 1
+    }, txt: {
+        color: "black",
+        backgroundColor: "DodgerBlue",
+        padding: "10px",
+        fontFamily: "Arial"
+    }
+});
