@@ -69,8 +69,10 @@ export default function Setting() {
     useEffect(() => {
         console.log("rendered");
         if (loading) return;
+        if (!user) return navigate(`/`);
         fetchUserdata();
     }, [user, loading]);
+
 
     return (
         <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)' }}>
@@ -121,7 +123,7 @@ export default function Setting() {
                     </Select>
                 </FormControl>
                 <Button color="error" variant="contained" fullWidth style={{ marginBottom: 20 }}
-                    onClick={EditDB()}
+                    onClick={() => EditDB()}
                 >
                     Upload Info
                 </Button>

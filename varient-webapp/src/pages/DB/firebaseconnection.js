@@ -35,7 +35,7 @@ const registerWithPatient = async (email, password, name, age, gender, geneMutat
     try {
         const res = await auth.createUserWithEmailAndPassword(email, password);
         const user = res.user;
-        await db.collection("Patients").doc(name).set({
+        await db.collection("Patients").doc(user.uid).set({
             uid: user.uid,
             name,
             age,
