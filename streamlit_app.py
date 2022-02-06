@@ -92,7 +92,13 @@ if __name__ == '__main__':
         image = Image.open(filename)
         st.write('You selected `%s`' % filename)
         label = label_image(filename)
+        if label is True:
+            label = "your target gene is present in the report."
+        else:
+            label = "Your target gene is not present in the report."
         st.image(image, caption=label)
+        keyword_text = "Here are the keywords that might be helpful:"
+        st.text(keyword_text)
         st.text(extract_keywords(img_to_txt(filename)))
 
 
