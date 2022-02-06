@@ -12,6 +12,9 @@ import {
 } from './DB/firebaseconnection';
 import { genderOptions } from "./DB/data";
 
+
+
+import { FcGoogle } from "react-icons/fc";
 import { useTheme } from '@mui/material/styles';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
@@ -95,94 +98,100 @@ export default function Signup() {
 
 
     return (
-        <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)' }}>
-            <form>
-                <TextField
-                    fullWidth
-                    id="name"
-                    name="name"
-                    label="Name"
-                    type="text"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    style={{ marginBottom: 20 }}
-                />
-                <TextField
-                    fullWidth
-                    id="age"
-                    name="age"
-                    label="Age"
-                    type="Number"
-                    value={age}
-                    onChange={(e) => setAge(e.target.value)}
-                    style={{ marginBottom: 20 }}
-                />
-                <FormControl fullWidth variant="standard">
-                    <InputLabel id="demo-customized-select-label">Gender</InputLabel>
-                    <Select
-                        fullWidth
-                        id="gender"
-
-                        name="gender"
-                        value={gender}
-
-                        style={{ marginBottom: 20, }}
-                        onChange={(e) => setGender(e.target.value)}
-                        input={<OutlinedInput label="Tag" />}
-                        MenuProps={MenuProps}
-                    >
-                        {genderOptions.map((gender) => (
-                            <MenuItem
-                                key={gender}
-                                value={gender}
-                            >
-                                {gender}
-                            </MenuItem>
-                        ))}
-                    </Select>
-                </FormControl>
-
-
-                <TextField
-                    fullWidth
-                    id="email"
-                    name="email"
-                    label="Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    style={{ marginBottom: 20 }}
-                />
-                <TextField
-                    fullWidth
-                    id="password"
-                    name="password"
-                    label="Password"
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    style={{ marginBottom: 20 }}
-                />
-                <TextField
-                    fullWidth
-                    id="confirmPassword"
-                    name="confirmPassword"
-                    label="Confirm Password"
-                    type="password"
-                    value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
-                    style={{ marginBottom: 20 }}
-                />
-                <Button color="primary" variant="contained" fullWidth style={{ marginBottom: 20 }}
-                    onClick={() => SignUp()}
-                >
-                    Sign up
-                </Button>
+        <div className='body'>
+            <div className='box'>
+                <div className="textlg">
+                    Sign Up
+                </div>
                 <Button color="error" variant="contained" fullWidth style={{ marginBottom: 20 }}
                     onClick={() => SignUPWithGoogle(age, gender, geneMutation, listofReports)}
                 >
-                    Sign up with Google
+                    <FcGoogle className='googlelogo' /> Sign up with Google
                 </Button>
-            </form>
+                <form>
+                    <TextField
+                        fullWidth
+                        id="name"
+                        name="name"
+                        label="Name"
+                        type="text"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        style={{ marginBottom: 20 }}
+                    />
+                    <TextField
+                        fullWidth
+                        id="age"
+                        name="age"
+                        label="Age"
+                        type="Number"
+                        value={age}
+                        onChange={(e) => setAge(e.target.value)}
+                        style={{ marginBottom: 20 }}
+                    />
+                    <FormControl fullWidth variant="standard">
+                        <InputLabel id="demo-customized-select-label">Gender</InputLabel>
+                        <Select
+                            fullWidth
+                            id="gender"
+
+                            name="gender"
+                            value={gender}
+
+                            style={{ marginBottom: 20, }}
+                            onChange={(e) => setGender(e.target.value)}
+                            input={<OutlinedInput label="Tag" />}
+                            MenuProps={MenuProps}
+                        >
+                            {genderOptions.map((gender) => (
+                                <MenuItem
+                                    key={gender}
+                                    value={gender}
+                                >
+                                    {gender}
+                                </MenuItem>
+                            ))}
+                        </Select>
+                    </FormControl>
+
+
+                    <TextField
+                        fullWidth
+                        id="email"
+                        name="email"
+                        label="Email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        style={{ marginBottom: 20 }}
+                    />
+                    <TextField
+                        fullWidth
+                        id="password"
+                        name="password"
+                        label="Password"
+                        type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        style={{ marginBottom: 20 }}
+                    />
+                    <TextField
+                        fullWidth
+                        id="confirmPassword"
+                        name="confirmPassword"
+                        label="Confirm Password"
+                        type="password"
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
+                        style={{ marginBottom: 20 }}
+                    />
+                    <Button color="primary" variant="contained" fullWidth style={{ marginBottom: 20 }}
+                        onClick={() => SignUp()}
+                    >
+                        Sign up
+                    </Button>
+
+                </form>
+            </div>
         </div>
     )
 }
