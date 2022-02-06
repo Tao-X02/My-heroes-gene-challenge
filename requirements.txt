@@ -5,5 +5,4 @@ spacy==3.0.7
 spacy-legacy==3.0.8
 spacy-loggers==1.0.1
 streamlit==1.5.0
-streamlit==0.73.0
 scispacy==0.4.0
