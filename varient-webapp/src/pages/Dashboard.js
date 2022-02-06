@@ -1,8 +1,7 @@
 import React, { useEffect, useState, Component, useMemo } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import {
-    auth,
-    logout,
+    auth
 } from './DB/firebaseconnection';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDropzone } from 'react-dropzone';
@@ -88,9 +87,7 @@ export default function Dashboard(props) {
                 <p>Drop or select images here</p>
             </div>
             <div>{images}</div>
-            <button onClick={logout}>
-                Logout
-            </button>
+
         </div>
     );
 }
